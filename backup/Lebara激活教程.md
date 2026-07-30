@@ -1,8 +1,8 @@
 # Lebara激活教程
 
-你买到的卡片都是在UK已插卡激活的，无需拉取wifi calling
+**你买到的卡片都是在UK已插卡激活的，无需拉取wifi calling**
 
-教程测试设备
+**教程测试设备**
 - 小米14Pro 国行
 - 苹果Xr 国行
 
@@ -22,6 +22,9 @@
 2. 绑定查询到的07开头的手机号码；
 3. 输入验证码；
 
+
+![I4OVzZgrDJ4RratdTw0DD3AaqJIDcP56.webp](https://cdn.nodeimage.com/i/I4OVzZgrDJ4RratdTw0DD3AaqJIDcP56.webp)
+
 ---
 
 ### 收不到验证码
@@ -32,7 +35,7 @@
 
     - Vodafone
 
-2. 以上收不到添加第三个；
+2. 以上收不到添加第三个（实测不如上面两个）；
 
 - 名称：Lebara Internet
 
@@ -42,7 +45,6 @@
 
 - 密码：wap
 
-![I4OVzZgrDJ4RratdTw0DD3AaqJIDcP56.webp](https://cdn.nodeimage.com/i/I4OVzZgrDJ4RratdTw0DD3AaqJIDcP56.webp)
 
 ## 三、充值余额
 1. 2026年7月30日测试，国内visa和U卡都可以；
