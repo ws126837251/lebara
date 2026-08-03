@@ -44,7 +44,17 @@
 - 用户名：wap
 
 - 密码：wap
-3. 还是收不到的话；
+
+3. 苹果手机；
+- 设置
+- 点击蜂窝网络
+- LEB卡
+- 蜂窝数据网络
+- 拉到最下面
+- 还原设置，点击还原
+- 重启手机
+
+4. 还是收不到的话；
 - 淘宝搜：lebara话费充值，大概55左右，先冲话费再收短信（已测试三分钟到账，无广，也可以买其他家，看清楚是话费不是套餐）；
 ![WwPzxH9lQUDJXJ6U9W0vCwgJO8CE39eE.webp](https://cdn.nodeimage.com/i/WwPzxH9lQUDJXJ6U9W0vCwgJO8CE39eE.webp)
 
