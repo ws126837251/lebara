@@ -44,6 +44,9 @@
 - 用户名：wap
 
 - 密码：wap
+3. 还是收不到的话；
+- 淘宝搜：lebara话费充值，大概55左右，先冲话费再收短信（已测试三分钟到账，无广，也可以买其他家，看清楚是话费不是套餐）；
+![WwPzxH9lQUDJXJ6U9W0vCwgJO8CE39eE.webp](https://cdn.nodeimage.com/i/WwPzxH9lQUDJXJ6U9W0vCwgJO8CE39eE.webp)
 
 
 ## 三、充值余额
@@ -61,6 +64,7 @@
 ### 1. 准备工作
 
 被转卡的PAC码，giffgaff是GGF123456
+！！自己能拉起来wificall的环境，拉不起来禁止申请，号钱两空！！
 
 ### 2. 打开网站：
 
