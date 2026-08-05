@@ -56,37 +56,5 @@
 
 ## 四、激活成功
 
-到这一步，这个卡就能正常使用了，再看下去是携号转网教程
-
-## 五、携号转网
-
-### 1. 准备工作
-
-被转卡的PAC码，giffgaff是GGF123456
-！！自己能拉起来wificall的环境，拉不起来禁止申请，号钱两空！！
-
-### 2. 打开网站：
-
-[携号转网](https://www.lebara.co.uk/en/portin/verify-temporary-number.html)
-
-### 3. 输入手机号，接收验证码：
-
-接不到看教程二，或者查询话费是否到账
-
-### 4. 输入原手机号，PAC码，选择次日：
-
-![ukPSoZ959Ljd9e6JGbapTpTHRmwP8u32.webp](https://cdn.nodeimage.com/i/ukPSoZ959Ljd9e6JGbapTpTHRmwP8u32.webp)
-
-### 5. 申请成功：
-
-![O5xRQvoR5GZFra9jTQ56wjuFXrcMztxA.webp](https://cdn.nodeimage.com/i/O5xRQvoR5GZFra9jTQ56wjuFXrcMztxA.webp)
-
-### 6. 等待系统转网：
-
-实测从申请到成功稳定有信号需要**36**个小时，请耐心等待。
-
-### 7. 检查：
-
-1. 有稳定信号，不断连；
-2. *#100# 查询到是自己原手机号码；
-3. 大功告成。
+- 话费到账之后号码才能正常使用，请耐心等待
+- 携号转网：[点击进入](https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html)
