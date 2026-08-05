@@ -1,9 +1,8 @@
-# Lebara激活教程
-
-**你买到的卡片都是在UK已插卡激活的，无需拉取wifi calling**
+# Lebara卡激活很玄学，请务必耐心等待多试几次
 
 **教程测试设备**
 - 小米14Pro 国行
+- 小米9 国行
 - 苹果Xr 国行
 
 ## 一、获取手机号码
@@ -17,6 +16,10 @@
 2、  查询余额：
 > *#1345#
 
+报错/无法查询：
+[安卓教程](https://tutorials.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
+[苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html)
+
 ## 二、登录官网
 1. 官网注册账号：[点击进入](https://www.lebara.co.uk/en/home.html)；
 2. 绑定查询到的07开头的手机号码；
@@ -29,30 +32,16 @@
 
 ### 收不到验证码/获取不到号码
 
-1. 如果收不到验证码，请切换接入点（APN）,**重启手机**；
+1. 切换接入点（APN）,**重启手机**；
 
     - Talkmobile
 
     - Vodafone
 
-2. 以上收不到添加第三个（实测不如上面两个）；
+    - Lebara
 
-- 名称：Lebara Internet
-
-- APN：uk.lebara.mobi
-
-- 用户名：wap
-
-- 密码：wap
-
-3. 苹果手机；
-- 设置
-- 点击蜂窝网络
-- LEB卡
-- 蜂窝数据网络
-- 拉到最下面
-- 还原设置，点击还原
-- 重启手机
+[安卓教程](https://tutorials.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
+[苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html)
 
 4. 还是收不到的话；
 - 淘宝搜：lebara话费充值，大概55左右，先冲话费再收短信（已测试三分钟到账，无广，也可以买其他家，看清楚是话费不是套餐）；
