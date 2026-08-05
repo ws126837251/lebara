@@ -1,4 +1,7 @@
-# 如何携号转入Lebara
+
+```
+！！需要自己能拉起来WifiCall，拉不起来禁止申请，号钱两空！！
+```
 
 通过 PAC 可以把其他英国运营商的手机号码转入 Lebara，原号码保持不变。
 
@@ -28,6 +31,9 @@
 
 [Lebara携号转入页面](https://www.lebara.co.uk/en/portin.html)
 
+接不到验证码请检查是否充值余额，是否到账
+[激活教程]()
+
 根据页面提示填写：
 
 - Lebara 临时号码；
@@ -35,11 +41,16 @@
 - PAC；
 - 希望办理的日期。
 
+![ukPSoZ959Ljd9e6JGbapTpTHRmwP8u32.webp](https://cdn.nodeimage.com/i/ukPSoZ959Ljd9e6JGbapTpTHRmwP8u32.webp)
+
 ## 四、等待转网
 
 转网期间可能出现短暂断网、号码显示异常或短信延迟。
 
 请同时保留原 SIM 和 Lebara SIM，直到转网完成。
+
+![O5xRQvoR5GZFra9jTQ56wjuFXrcMztxA.webp](https://cdn.nodeimage.com/i/O5xRQvoR5GZFra9jTQ56wjuFXrcMztxA.webp)
+
 
 ## 五、转网完成后检查
 
@@ -50,4 +61,3 @@
 5. 测试重要账号验证码。
 
 Lebara 官方页面表示通常可在约 48 小时内完成，实际时间以转网通知为准。
-

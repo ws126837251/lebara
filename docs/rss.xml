@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Wed, 05 Aug 2026 12:33:52 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>苹果ios26以上怎么获取手机号</title><link>https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html</link><description># 输入之后显示空白
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Wed, 05 Aug 2026 12:41:05 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>苹果ios26以上怎么获取手机号</title><link>https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html</link><description># 输入之后显示空白
 
 1. 小火箭开代理；
 2. 英国原生节点（测试其他节点不行）；
@@ -25,7 +25,10 @@ Lebara 支持国际漫游，但这不等于运营商保证号码可以永久在�
 3. 开启飞行模式后再关闭；
 4. 重启手机；
 5. 检查账户是否有余额或有效套餐；
-6. 检查 SIM 是否因长期未使用而受限。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/wu-xin-hao-he-wu-fa-shang-wang.html</guid><pubDate>Sun, 02 Aug 2026 10:21:27 +0000</pubDate></item><item><title>携号转入Lebara</title><link>https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html</link><description># 如何携号转入Lebara
+6. 检查 SIM 是否因长期未使用而受限。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/wu-xin-hao-he-wu-fa-shang-wang.html</guid><pubDate>Sun, 02 Aug 2026 10:21:27 +0000</pubDate></item><item><title>携号转入Lebara</title><link>https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html</link><description>
+```
+！！需要自己能拉起来WifiCall，拉不起来禁止申请，号钱两空！！
+```
 
 通过 PAC 可以把其他英国运营商的手机号码转入 Lebara，原号码保持不变。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html</guid><pubDate>Sun, 02 Aug 2026 10:21:26 +0000</pubDate></item><item><title>获取PAC并转出</title><link>https://tutorials.wufeng.de/lebara/post/huo-qu-PAC-bing-zhuan-chu.html</link><description># 如何获取Lebara PAC并转出
 
