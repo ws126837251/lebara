@@ -2,8 +2,11 @@ name: build Gmeek
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/Gmeek.yml"
   issues:
-    types: [opened, edited]
+    types: [opened, edited, pinned, unpinned]
   schedule:
     - cron: "0 16 * * *"
 
@@ -15,6 +18,7 @@ jobs:
     if: >-
       ${{
         github.event_name == 'workflow_dispatch' ||
+        github.event_name == 'push' ||
         github.event_name == 'schedule' ||
         github.event.repository.owner.id == github.event.sender.id
       }}
@@ -182,7 +186,8 @@ jobs:
                   articles.append({
                       "date": date_value,
                       "row": row,
-                      "date_label": date_label
+                      "date_label": date_label,
+                      "pinned": row.select_one("svg .svgTop1") is not None
                   })
 
               if not articles:
@@ -215,7 +220,7 @@ jobs:
               changed = True
 
               # ---------------------------------------------------------
-              # 4. 按日期从早到晚排序
+              # 4. 置顶优先，组内按日期从早到晚排序
               # ---------------------------------------------------------
               groups = defaultdict(list)
 
@@ -234,6 +239,7 @@ jobs:
                   # 同一天的文章保持原来的相对顺序
                   group.sort(
                       key=lambda item: (
+                          0 if item["pinned"] else 1,
                           item["date"],
                           item["original_index"]
                       )
@@ -315,7 +321,19 @@ jobs:
               if "rss" in str(link).lower():
                   rss_links.append(link.get("href"))
 
+          article_rows = soup.select("a.SideNav-item")
+          seen_unpinned = False
+
+          for row in article_rows:
+              is_pinned = row.select_one("svg .svgTop1") is not None
+
+              if not is_pinned:
+                  seen_unpinned = True
+              elif seen_unpinned:
+                  raise RuntimeError("首页置顶文章顺序校验失败")
+
           print("首页日期标签已全部删除")
+          print("首页置顶文章顺序已验证")
           print("CUSTOMIZE_VERIFIED")
           PY
 
