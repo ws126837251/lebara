@@ -12,7 +12,10 @@
 ## 文件职责
 
 - `config.json`：站点标题、说明、主题注入脚本和 Gmeek 版本等源配置。
+- `article-order.json`：首页自定义置顶文章及其精确显示顺序，不限制数量。
 - `.github/workflows/Gmeek.yml`：生成、定制、验证和部署流程。
+- `scripts/customize_homepage.py`：按自定义顺序处理并校验生成后的首页。
+- `tests/test_customize_homepage.py`：自定义顺序与配置校验测试。
 - `docs/`：工作流生成的发布文件，不应直接手工维护。
 - `backup/`：工作流生成的文章备份，不应作为文章的主要编辑入口。
 - `blogBase.json`：Gmeek 生成的数据文件，不应直接编辑。
