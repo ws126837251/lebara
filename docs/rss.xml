@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Sat, 08 Aug 2026 02:21:00 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>如何申请esim</title><link>https://tutorials.wufeng.de/lebara/post/ru-he-shen-qing-esim.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Tue, 11 Aug 2026 06:46:30 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>实体卡转esim</title><link>https://tutorials.wufeng.de/lebara/post/shi-ti-qia-zhuan-esim.html</link><description>
+## 转esim：[点击进入](https://www.lebara.co.uk/transition)
+
+- 登录您的 MyLebara 账户
+
+- 确认您的手机支持 e-SIM
+
+- 选择您想要迁移的手机号码
+
+- 选择您希望的迁移日期
+
+- 按照屏幕提示激活您的 e-SIM
+
+- 在迁移当日，您的号码将自动从实体 SIM 卡转移至新的 e-SIM
+。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/shi-ti-qia-zhuan-esim.html</guid><pubDate>Tue, 11 Aug 2026 06:45:58 +0000</pubDate></item><item><title>如何申请esim</title><link>https://tutorials.wufeng.de/lebara/post/ru-he-shen-qing-esim.html</link><description>
 ```
 ！！有概率需要自己能拉起来WifiCall，拉不起来禁止申请，号钱两空！！
 ```
