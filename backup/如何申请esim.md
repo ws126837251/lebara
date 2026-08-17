@@ -5,6 +5,8 @@
 
 # 申请链接： [点击进入](https://aklam.io/aNYS40Zo)
 
+# 优惠码：LEBARA5
+
 ## 一、购买折后2.5磅的套餐
 
 ![OowNWzE3e0EWpQDMMZfc7ZPUXZtNXkCG.webp](https://cdn.nodeimage.com/i/OowNWzE3e0EWpQDMMZfc7ZPUXZtNXkCG.webp)
