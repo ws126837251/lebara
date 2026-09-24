@@ -20,7 +20,7 @@
 
 报错/无法查询：
 [安卓教程](https://tutorials.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
-[苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html)
+[苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html)
 
 ## 二、登录官网
 1. 官网注册账号：[点击进入](https://www.lebara.co.uk/en/home.html)；
