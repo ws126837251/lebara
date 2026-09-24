@@ -54,5 +54,8 @@
 
 ## 四、激活成功
 
-- 话费到账之后号码才能正常使用，请耐心等待
+1. 话费到账之后号码才能正常使用，请耐心等待；
+2. 拉取WiFiCall，拨打5588激活；
+3. 拨打三次，飞行模式下打通、关飞行模式打通、关WiFi打通就能成功激活；
+
 - 携号转网：[点击进入](https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html)
