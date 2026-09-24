@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Thu, 03 Sep 2026 19:11:22 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>实体卡转esim</title><link>https://tutorials.wufeng.de/lebara/post/shi-ti-qia-zhuan-esim.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Lebara 使用指南</title><link>https://tutorials.wufeng.de/lebara</link><description>本教程为旅游专用，请遵守当地法律法规，禁止用于违法犯罪行为，否则后果自负</description><copyright>Lebara 使用指南</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp</url><title>avatar</title><link>https://tutorials.wufeng.de/lebara</link></image><lastBuildDate>Thu, 24 Sep 2026 03:21:13 +0000</lastBuildDate><managingEditor>Lebara 使用指南</managingEditor><ttl>60</ttl><webMaster>Lebara 使用指南</webMaster><item><title>实体卡转esim</title><link>https://tutorials.wufeng.de/lebara/post/shi-ti-qia-zhuan-esim.html</link><description>
 ## 转esim：[点击进入](https://www.lebara.co.uk/transition)
 
 - 登录您的 MyLebara 账户
@@ -118,4 +118,5 @@ TG 群：[点击进群](https://t.me/+G9288xTDEpBmZDNk)
 ## 一、获取手机号码
 1. 把收到的SIM卡插入手机；
 2. 开机并等待出现网络信号；
-3. 拨号界面输入查询代码。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/Lebara-ji-huo-jiao-cheng.html</guid><pubDate>Thu, 30 Jul 2026 07:29:54 +0000</pubDate></item></channel></rss>
+3. 设置为2G网络，打开漫游数据；
+4. 拨号界面输入查询代码。</description><guid isPermaLink="true">https://tutorials.wufeng.de/lebara/post/Lebara-ji-huo-jiao-cheng.html</guid><pubDate>Thu, 30 Jul 2026 07:29:54 +0000</pubDate></item></channel></rss>
