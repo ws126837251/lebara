@@ -41,6 +41,8 @@ iPhone请求网络定位→→→Apple返回当前位置→→→Shadowrocket模
 
 ## 苹果IOS27以上修改定位:[点击直达（科网）](https://www.youtube.com/watch?v=iFh-o3to7Rk)
 
+## 如果模块失效用这个：[点击进入](https://cyberhandyman-ioslocspo.cyberhandyman.workers.dev/)
+
 设置坐标后，打开苹果地图观察当前位置。
 
 如果没有立即改变，可以先尝试：
@@ -106,10 +108,23 @@ text
 
 # 五、总结
 
+测试手机：iphone Xr
+
+<img width="828" height="499" alt="Image" src="https://github.com/user-attachments/assets/082be66d-47e8-4dc3-8f10-a4db2b2f23a7" />
+
 1. WLOC改定位到英国；
+
+<img width="599" height="801" alt="Image" src="https://github.com/user-attachments/assets/9d865281-531e-42c5-bcf6-46dc9fdab4f8" />
 
 2. 开启飞行模式，开启局域网通话，重启手机（隔空投送，蓝牙最好关掉）
 
+<img width="1105" height="822" alt="Image" src="https://github.com/user-attachments/assets/6c979d30-2a9b-4e62-b947-32f5b02a42c9" />
+
 3. 开机后，保持飞行模式，自动连接节点，检查地图，IP和时间是否都在英国
 
-4. 两分钟内，查看手机状态栏，出现WiFiCall就成功
+<img width="828" height="1280" alt="Image" src="https://github.com/user-attachments/assets/b7c251f1-9ef0-4165-b82e-435c713cdcb6" />
+
+4. 数分钟内，查看手机状态栏，出现WiFiCall就成功（有人反馈等分长时间才可以，多重启几次）
+
+<img width="600" height="833" alt="Image" src="https://github.com/user-attachments/assets/8af9e73b-0981-4f19-9b74-e75af4132d0d" />
+
