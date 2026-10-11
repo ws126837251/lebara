@@ -122,7 +122,7 @@ text
 
 <img width="828" height="1280" alt="Image" src="https://github.com/user-attachments/assets/b7c251f1-9ef0-4165-b82e-435c713cdcb6" />
 
-4. 数分钟内，查看手机状态栏，出现WiFiCall就成功（有人反馈等分长时间才可以，多重启几次）
+4. 数分钟内，查看手机状态栏，出现WiFiCall就成功（有人反馈需要等很长时间才可以，多重启几次）
 
 <img width="600" height="833" alt="Image" src="https://github.com/user-attachments/assets/8af9e73b-0981-4f19-9b74-e75af4132d0d" />
 
