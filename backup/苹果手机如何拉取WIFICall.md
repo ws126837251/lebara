@@ -37,9 +37,9 @@ iPhone请求网络定位→→→Apple返回当前位置→→→Shadowrocket模
 # 三、修改定位
 
 
-## 苹果IOS26以下修改定位:[点击直达（科网）](https://www.youtube.com/watch?v=9kNXvGxVsQc)
+## 苹果IOS26以下修改定位视频教程:[点击直达（科网）](https://www.youtube.com/watch?v=9kNXvGxVsQc)
 
-## 苹果IOS27以上修改定位:[点击直达（科网）](https://www.youtube.com/watch?v=iFh-o3to7Rk)
+## 苹果IOS27以上修改定位视频教程:[点击直达（科网）](https://www.youtube.com/watch?v=iFh-o3to7Rk)
 
 ## 如果模块失效用这个：[点击进入](https://cyberhandyman-ioslocspo.cyberhandyman.workers.dev/)
 
