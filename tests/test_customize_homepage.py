@@ -50,7 +50,7 @@ class ArticleOrderTests(unittest.TestCase):
 
     def test_normalizes_site_and_encoded_urls(self):
         self.assertEqual(
-            normalize_href("https://tutorials.wufeng.de/lebara/post/%E6%B5%8B%E8%AF%95.html?x=1"),
+            normalize_href("https://blog.wufeng.de/lebara/post/%E6%B5%8B%E8%AF%95.html?x=1"),
             "post/测试.html",
         )
 

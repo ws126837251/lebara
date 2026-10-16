@@ -1,4 +1,4 @@
-# Lebara 使用指南 :link: https://tutorials.wufeng.de/lebara/
+# Lebara 使用指南 :link: https://blog.wufeng.de/lebara/
 
 通过 GitHub Issues 编写和维护 Lebara 中文教程，使用 Gmeek 自动生成并部署到 GitHub Pages。
 

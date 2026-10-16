@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlparse
 
 
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-HOME_URL = "https://tutorials.wufeng.de/lebara/"
+HOME_URL = "https://blog.wufeng.de/lebara/"
 
 
 def normalize_href(href):

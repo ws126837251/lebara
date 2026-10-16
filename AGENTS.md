@@ -3,7 +3,7 @@
 ## 项目概览
 
 - 本仓库是由 Gmeek 生成并通过 GitHub Pages 发布的静态博客。
-- 生产站点：`https://tutorials.wufeng.de/lebara/`
+- 生产站点：`https://blog.wufeng.de/lebara/`
 - 主要配置：`config.json`
 - 自动化工作流：`.github/workflows/Gmeek.yml`
 - 文章的原始内容来自本仓库的 GitHub Issues。
