@@ -13,6 +13,34 @@ TAG_TITLE_SOURCE = 'tagTitle.innerHTML="Tag #"+label;'
 TAG_TITLE_REPLACEMENT = "tagTitle.innerHTML=label;"
 ALL_BUTTON_SOURCE = '''showLabels.setAttribute("onclick", "javascript:updateShowTag('" + label + "');");'''
 ALL_BUTTON_REPLACEMENT = '''showLabels.setAttribute("onclick", label == "All" ? "javascript:window.location.href='https://blog.wufeng.de/lebara/';" : "javascript:updateShowTag('" + label + "');");'''
+VCOUNT_MARKER = "data-wufeng-vcount-canonical"
+VCOUNT_PATCH = """<script data-wufeng-vcount-canonical>
+(function(){
+    if(window.__wufengVercountCanonical)return;
+    window.__wufengVercountCanonical=true;
+    var api="https://events.vercount.one/api/v2/log";
+    var legacyHost="tutorials.wufeng.de";
+    var originalFetch=window.fetch;
+    if(typeof originalFetch!=="function")return;
+    window.fetch=function(input,init){
+        try{
+            var requestUrl=typeof input==='string'?input:(input&&input.url);
+            if(requestUrl===api&&init&&typeof init.body==='string'){
+                var payload=JSON.parse(init.body);
+                if(payload&&typeof payload.url==='string'){
+                    var target=new URL(payload.url);
+                    if(target.hostname==='blog.wufeng.de'){
+                        target.hostname=legacyHost;
+                        payload.url=target.href;
+                        init=Object.assign({},init,{body:JSON.stringify(payload)});
+                    }
+                }
+            }
+        }catch(error){}
+        return originalFetch.call(this,input,init);
+    };
+})();
+</script>"""
 
 
 def normalize_href(href):
@@ -118,6 +146,31 @@ def customize_tag_page(root):
     print("已处理标签页标题和 All 按钮")
 
 
+def patch_vercount(root):
+    from bs4 import BeautifulSoup
+
+    html_files = list((root / "docs").rglob("*.html"))
+    if not html_files:
+        raise FileNotFoundError("docs 中没有可注入统计兼容脚本的 HTML 文件")
+
+    patched = 0
+    for html_file in html_files:
+        soup = BeautifulSoup(html_file.read_text(encoding="utf-8"), "html.parser")
+        if soup.find("script", attrs={VCOUNT_MARKER: True}):
+            continue
+        plugin = soup.find(
+            "script",
+            src="https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js",
+        )
+        if plugin is None:
+            raise RuntimeError(f"页面缺少 GmeekVercount.js：{html_file}")
+        patch_script = BeautifulSoup(VCOUNT_PATCH, "html.parser").find("script")
+        plugin.insert_after(patch_script)
+        html_file.write_text(str(soup), encoding="utf-8")
+        patched += 1
+    print(f"已统一 Vercount 统计标识，处理 {patched} 个页面")
+
+
 def collect_articles(soup, rank_by_url):
     articles = []
     seen_rows = set()
@@ -205,6 +258,7 @@ def process_homepage(root):
     sort_articles(soup, articles)
     index_file.write_text(str(soup), encoding="utf-8")
     customize_tag_page(root)
+    patch_vercount(root)
     print(f"已处理 {len(articles)} 篇文章，自定义排序 {len(order)} 篇")
 
 
@@ -253,6 +307,14 @@ def verify_tag_page(root):
     print("已验证标签页标题和 All 按钮")
 
 
+def verify_vercount(root):
+    html_files = list((root / "docs").rglob("*.html"))
+    missing = [str(path) for path in html_files if VCOUNT_MARKER not in path.read_text(encoding="utf-8")]
+    if missing:
+        raise RuntimeError("以下页面缺少 Vercount 兼容脚本：" + ", ".join(missing[:5]))
+    print(f"已验证 Vercount 兼容脚本，共 {len(html_files)} 个页面")
+
+
 def main():
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/opt/Gmeek")
     command = sys.argv[2] if len(sys.argv) > 2 else "process"
@@ -261,6 +323,7 @@ def main():
     elif command == "verify":
         verify_homepage(root)
         verify_tag_page(root)
+        verify_vercount(root)
     else:
         raise ValueError(f"未知命令：{command}")
 
