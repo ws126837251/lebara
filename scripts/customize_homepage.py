@@ -8,6 +8,11 @@ from urllib.parse import unquote, urlparse
 
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 HOME_URL = "https://blog.wufeng.de/lebara/"
+TAG_PAGE = "tag.html"
+TAG_TITLE_SOURCE = 'tagTitle.innerHTML="Tag #"+label;'
+TAG_TITLE_REPLACEMENT = "tagTitle.innerHTML=label;"
+ALL_BUTTON_SOURCE = '''showLabels.setAttribute("onclick", "javascript:updateShowTag('" + label + "');");'''
+ALL_BUTTON_REPLACEMENT = '''showLabels.setAttribute("onclick", label == "All" ? "javascript:window.location.href='https://blog.wufeng.de/lebara/';" : "javascript:updateShowTag('" + label + "');");'''
 
 
 def normalize_href(href):
@@ -86,6 +91,31 @@ def set_custom_pin(row, is_pinned):
     if icon_path is None:
         raise RuntimeError(f"文章行缺少置顶图标：{row.get('href', '')}")
     icon_path["class"] = ["svgTop1" if is_pinned else "svgTop0"]
+
+
+def customize_tag_page(root):
+    from bs4 import BeautifulSoup
+
+    tag_file = root / "docs" / TAG_PAGE
+    if not tag_file.exists():
+        raise FileNotFoundError(f"{tag_file} 不存在，无法处理标签页")
+
+    soup = BeautifulSoup(tag_file.read_text(encoding="utf-8"), "html.parser")
+    matched = []
+    for script in soup.find_all("script"):
+        source = script.string
+        if source and TAG_TITLE_SOURCE in source and ALL_BUTTON_SOURCE in source:
+            matched.append(script)
+
+    if len(matched) != 1:
+        raise RuntimeError(f"标签页脚本匹配数量异常：{len(matched)}")
+
+    script = matched[0]
+    updated = script.string.replace(TAG_TITLE_SOURCE, TAG_TITLE_REPLACEMENT)
+    updated = updated.replace(ALL_BUTTON_SOURCE, ALL_BUTTON_REPLACEMENT)
+    script.string = updated
+    tag_file.write_text(str(soup), encoding="utf-8")
+    print("已处理标签页标题和 All 按钮")
 
 
 def collect_articles(soup, rank_by_url):
@@ -174,6 +204,7 @@ def process_homepage(root):
         article["date_label"].decompose()
     sort_articles(soup, articles)
     index_file.write_text(str(soup), encoding="utf-8")
+    customize_tag_page(root)
     print(f"已处理 {len(articles)} 篇文章，自定义排序 {len(order)} 篇")
 
 
@@ -209,6 +240,19 @@ def verify_homepage(root):
     print(f"已验证自定义顺序和图标，共 {len(expected_urls)} 篇，不限制数量")
 
 
+def verify_tag_page(root):
+    from bs4 import BeautifulSoup
+
+    tag_file = root / "docs" / TAG_PAGE
+    soup = BeautifulSoup(tag_file.read_text(encoding="utf-8"), "html.parser")
+    scripts = "\n".join(script.string or "" for script in soup.find_all("script"))
+    if TAG_TITLE_SOURCE in scripts or TAG_TITLE_REPLACEMENT not in scripts:
+        raise RuntimeError("标签页仍会显示 Tag # 前缀")
+    if ALL_BUTTON_SOURCE in scripts or "window.location.href='https://blog.wufeng.de/lebara/'" not in scripts:
+        raise RuntimeError("标签页 All 按钮未指向 Lebara 首页")
+    print("已验证标签页标题和 All 按钮")
+
+
 def main():
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/opt/Gmeek")
     command = sys.argv[2] if len(sys.argv) > 2 else "process"
@@ -216,6 +260,7 @@ def main():
         process_homepage(root)
     elif command == "verify":
         verify_homepage(root)
+        verify_tag_page(root)
     else:
         raise ValueError(f"未知命令：{command}")
 
