@@ -1,0 +1,332 @@
+import json
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+from urllib.parse import unquote, urlparse
+
+
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+HOME_URL = "https://blog.wufeng.de/lebara/"
+TAG_PAGE = "tag.html"
+TAG_TITLE_SOURCE = 'tagTitle.innerHTML="Tag #"+label;'
+TAG_TITLE_REPLACEMENT = "tagTitle.innerHTML=label;"
+ALL_BUTTON_SOURCE = '''showLabels.setAttribute("onclick", "javascript:updateShowTag('" + label + "');");'''
+ALL_BUTTON_REPLACEMENT = '''showLabels.setAttribute("onclick", label == "All" ? "javascript:window.location.href='https://blog.wufeng.de/lebara/';" : "javascript:updateShowTag('" + label + "');");'''
+VCOUNT_MARKER = "data-wufeng-vcount-canonical"
+VCOUNT_PATCH = """<script data-wufeng-vcount-canonical>
+(function(){
+    if(window.__wufengVercountCanonical)return;
+    window.__wufengVercountCanonical=true;
+    var api="https://events.vercount.one/api/v2/log";
+    var legacyHost="tutorials.wufeng.de";
+    var originalFetch=window.fetch;
+    if(typeof originalFetch!=="function")return;
+    window.fetch=function(input,init){
+        try{
+            var requestUrl=typeof input==='string'?input:(input&&input.url);
+            if(requestUrl===api&&init&&typeof init.body==='string'){
+                var payload=JSON.parse(init.body);
+                if(payload&&typeof payload.url==='string'){
+                    var target=new URL(payload.url);
+                    if(target.hostname==='blog.wufeng.de'){
+                        target.hostname=legacyHost;
+                        payload.url=target.href;
+                        init=Object.assign({},init,{body:JSON.stringify(payload)});
+                    }
+                }
+            }
+        }catch(error){}
+        return originalFetch.call(this,input,init);
+    };
+})();
+</script>"""
+
+
+def normalize_href(href):
+    value = unquote(str(href).strip())
+    parsed = urlparse(value)
+    path = parsed.path if parsed.scheme or parsed.netloc else value.split("?", 1)[0]
+    path = path.lstrip("./")
+    if path.startswith("lebara/"):
+        path = path[len("lebara/") :]
+    return path
+
+
+def load_article_order(path):
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or set(data) != {"order"}:
+        raise ValueError("article-order.json 必须只包含 order 数组")
+
+    order = data["order"]
+    if not isinstance(order, list):
+        raise ValueError("article-order.json 的 order 必须是数组")
+    if any(type(issue_number) is not int or issue_number <= 0 for issue_number in order):
+        raise ValueError("order 只能包含大于 0 的 Issue 整数编号")
+    if len(order) != len(set(order)):
+        raise ValueError("order 中不能有重复的 Issue 编号")
+    return order
+
+
+def build_rank_by_url(order, blog_base):
+    posts = blog_base.get("postListJson")
+    if not isinstance(posts, dict):
+        raise ValueError("blogBase.json 缺少 postListJson")
+
+    rank_by_url = {}
+    missing = []
+    for rank, issue_number in enumerate(order):
+        post = posts.get(f"P{issue_number}")
+        if not isinstance(post, dict) or not post.get("postUrl"):
+            missing.append(issue_number)
+            continue
+        rank_by_url[normalize_href(post["postUrl"])] = rank
+
+    if missing:
+        values = ", ".join(f"#{number}" for number in missing)
+        raise ValueError(f"自定义顺序中的文章不存在或未发布：{values}")
+    return rank_by_url
+
+
+def article_sort_key(article):
+    rank = article["custom_rank"]
+    if rank is not None:
+        return (0, rank, "", article["original_index"])
+    return (1, 0, article["date"], article["original_index"])
+
+
+def find_date_label(text_node, row):
+    tag = text_node.parent
+    candidates = []
+    while tag is not None and tag != row:
+        if DATE_RE.fullmatch(tag.get_text(strip=True)):
+            candidates.append(tag)
+        tag = tag.parent
+    return candidates[-1] if candidates else text_node.parent
+
+
+def find_article_row(text_node):
+    row = text_node.find_parent("a")
+    if row is not None:
+        return row
+    return text_node.find_parent(
+        class_=lambda value: value and "Box-row" in str(value)
+    )
+
+
+def set_custom_pin(row, is_pinned):
+    icon_path = row.select_one("svg .svgTop0, svg .svgTop1")
+    if icon_path is None:
+        raise RuntimeError(f"文章行缺少置顶图标：{row.get('href', '')}")
+    icon_path["class"] = ["svgTop1" if is_pinned else "svgTop0"]
+
+
+def customize_tag_page(root):
+    from bs4 import BeautifulSoup
+
+    tag_file = root / "docs" / TAG_PAGE
+    if not tag_file.exists():
+        raise FileNotFoundError(f"{tag_file} 不存在，无法处理标签页")
+
+    soup = BeautifulSoup(tag_file.read_text(encoding="utf-8"), "html.parser")
+    matched = []
+    for script in soup.find_all("script"):
+        source = script.string
+        if source and TAG_TITLE_SOURCE in source and ALL_BUTTON_SOURCE in source:
+            matched.append(script)
+
+    if len(matched) != 1:
+        raise RuntimeError(f"标签页脚本匹配数量异常：{len(matched)}")
+
+    script = matched[0]
+    updated = script.string.replace(TAG_TITLE_SOURCE, TAG_TITLE_REPLACEMENT)
+    updated = updated.replace(ALL_BUTTON_SOURCE, ALL_BUTTON_REPLACEMENT)
+    script.string = updated
+    tag_file.write_text(str(soup), encoding="utf-8")
+    print("已处理标签页标题和 All 按钮")
+
+
+def patch_vercount(root):
+    from bs4 import BeautifulSoup
+
+    html_files = list((root / "docs").rglob("*.html"))
+    if not html_files:
+        raise FileNotFoundError("docs 中没有可注入统计兼容脚本的 HTML 文件")
+
+    patched = 0
+    for html_file in html_files:
+        soup = BeautifulSoup(html_file.read_text(encoding="utf-8"), "html.parser")
+        if soup.find("script", attrs={VCOUNT_MARKER: True}):
+            continue
+        plugin = soup.find(
+            "script",
+            src="https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js",
+        )
+        if plugin is None:
+            raise RuntimeError(f"页面缺少 GmeekVercount.js：{html_file}")
+        patch_script = BeautifulSoup(VCOUNT_PATCH, "html.parser").find("script")
+        plugin.insert_after(patch_script)
+        html_file.write_text(str(soup), encoding="utf-8")
+        patched += 1
+    print(f"已统一 Vercount 统计标识，处理 {patched} 个页面")
+
+
+def collect_articles(soup, rank_by_url):
+    articles = []
+    seen_rows = set()
+    date_nodes = soup.find_all(
+        string=lambda text: text is not None and DATE_RE.fullmatch(text.strip())
+    )
+
+    for text_node in date_nodes:
+        row = find_article_row(text_node)
+        if row is None or id(row) in seen_rows:
+            continue
+        seen_rows.add(id(row))
+        href = normalize_href(row.get("href", ""))
+        articles.append(
+            {
+                "date": text_node.strip(),
+                "row": row,
+                "date_label": find_date_label(text_node, row),
+                "href": href,
+                "custom_rank": rank_by_url.get(href),
+            }
+        )
+
+    if not articles:
+        raise RuntimeError("首页没有找到带日期的文章，为防止错误发布，构建已停止")
+    return articles
+
+
+def sort_articles(soup, articles):
+    groups = defaultdict(list)
+    for original_index, article in enumerate(articles):
+        article["original_index"] = original_index
+        article["parent"] = article["row"].parent
+        groups[id(article["parent"])].append(article)
+
+    for group in groups.values():
+        group.sort(key=article_sort_key)
+        first_row = min(group, key=lambda item: item["original_index"])["row"]
+        marker = soup.new_tag("span")
+        marker["data-gmeek-sort-marker"] = "true"
+        first_row.insert_before(marker)
+        for item in group:
+            item["row"].extract()
+        for item in group:
+            marker.insert_before(item["row"])
+        marker.decompose()
+
+
+def process_homepage(root):
+    from bs4 import BeautifulSoup
+
+    index_file = root / "docs" / "index.html"
+    order_file = root / "article-order.json"
+    blog_base_file = root / "blogBase.json"
+    if not index_file.exists():
+        raise FileNotFoundError(f"{index_file} 不存在，无法继续部署")
+
+    order = load_article_order(order_file)
+    blog_base = json.loads(blog_base_file.read_text(encoding="utf-8"))
+    rank_by_url = build_rank_by_url(order, blog_base)
+    soup = BeautifulSoup(index_file.read_text(encoding="utf-8"), "html.parser")
+
+    for link in soup.find_all("a", href=True):
+        href = link.get("href", "").strip().lower()
+        title = link.get("title", "").strip().lower()
+        aria = link.get("aria-label", "").strip().lower()
+        svg_text = str(link).lower()
+        is_rss = (
+            "rss.xml" in href
+            or href.endswith("/rss")
+            or href.endswith("/rss/")
+            or title == "rss"
+            or aria == "rss"
+            or "octicon-rss" in svg_text
+            or 'href="#rss"' in svg_text
+            or 'href="#octicon-rss"' in svg_text
+        )
+        if is_rss:
+            link["href"] = HOME_URL
+
+    articles = collect_articles(soup, rank_by_url)
+    for article in articles:
+        set_custom_pin(article["row"], article["custom_rank"] is not None)
+        article["date_label"].decompose()
+    sort_articles(soup, articles)
+    index_file.write_text(str(soup), encoding="utf-8")
+    customize_tag_page(root)
+    patch_vercount(root)
+    print(f"已处理 {len(articles)} 篇文章，自定义排序 {len(order)} 篇")
+
+
+def verify_homepage(root):
+    from bs4 import BeautifulSoup
+
+    index_file = root / "docs" / "index.html"
+    order = load_article_order(root / "article-order.json")
+    blog_base = json.loads((root / "blogBase.json").read_text(encoding="utf-8"))
+    rank_by_url = build_rank_by_url(order, blog_base)
+    expected_urls = [url for url, _ in sorted(rank_by_url.items(), key=lambda item: item[1])]
+    soup = BeautifulSoup(index_file.read_text(encoding="utf-8"), "html.parser")
+
+    remaining_dates = [
+        text.strip()
+        for text in soup.find_all(string=True)
+        if DATE_RE.fullmatch(text.strip())
+    ]
+    if remaining_dates:
+        raise RuntimeError("首页仍然存在日期标签：" + ", ".join(remaining_dates[:10]))
+
+    rows = soup.select("a.SideNav-item")
+    actual_urls = [normalize_href(row.get("href", "")) for row in rows]
+    if actual_urls[: len(expected_urls)] != expected_urls:
+        raise RuntimeError("首页自定义文章顺序校验失败")
+
+    for row, href in zip(rows, actual_urls):
+        should_pin = href in rank_by_url
+        is_pinned = row.select_one("svg .svgTop1") is not None
+        if is_pinned != should_pin:
+            raise RuntimeError(f"首页自定义置顶图标校验失败：{href}")
+
+    print(f"已验证自定义顺序和图标，共 {len(expected_urls)} 篇，不限制数量")
+
+
+def verify_tag_page(root):
+    from bs4 import BeautifulSoup
+
+    tag_file = root / "docs" / TAG_PAGE
+    soup = BeautifulSoup(tag_file.read_text(encoding="utf-8"), "html.parser")
+    scripts = "\n".join(script.string or "" for script in soup.find_all("script"))
+    if TAG_TITLE_SOURCE in scripts or TAG_TITLE_REPLACEMENT not in scripts:
+        raise RuntimeError("标签页仍会显示 Tag # 前缀")
+    if ALL_BUTTON_SOURCE in scripts or "window.location.href='https://blog.wufeng.de/lebara/'" not in scripts:
+        raise RuntimeError("标签页 All 按钮未指向 Lebara 首页")
+    print("已验证标签页标题和 All 按钮")
+
+
+def verify_vercount(root):
+    html_files = list((root / "docs").rglob("*.html"))
+    missing = [str(path) for path in html_files if VCOUNT_MARKER not in path.read_text(encoding="utf-8")]
+    if missing:
+        raise RuntimeError("以下页面缺少 Vercount 兼容脚本：" + ", ".join(missing[:5]))
+    print(f"已验证 Vercount 兼容脚本，共 {len(html_files)} 个页面")
+
+
+def main():
+    root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/opt/Gmeek")
+    command = sys.argv[2] if len(sys.argv) > 2 else "process"
+    if command == "process":
+        process_homepage(root)
+    elif command == "verify":
+        verify_homepage(root)
+        verify_tag_page(root)
+        verify_vercount(root)
+    else:
+        raise ValueError(f"未知命令：{command}")
+
+
+if __name__ == "__main__":
+    main()

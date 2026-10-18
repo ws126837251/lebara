@@ -19,10 +19,11 @@ VCOUNT_PATCH = """<script data-wufeng-vcount-canonical>
     if(window.__wufengVercountCanonical)return;
     window.__wufengVercountCanonical=true;
     var api="https://events.vercount.one/api/v2/log";
-    var legacyHost="tutorials.wufeng.de";
+    var counterUrl="https://blog.wufeng.de/lebara/";
     var originalFetch=window.fetch;
     if(typeof originalFetch!=="function")return;
     window.fetch=function(input,init){
+        var isCounterRequest=false;
         try{
             var requestUrl=typeof input==='string'?input:(input&&input.url);
             if(requestUrl===api&&init&&typeof init.body==='string'){
@@ -30,14 +31,24 @@ VCOUNT_PATCH = """<script data-wufeng-vcount-canonical>
                 if(payload&&typeof payload.url==='string'){
                     var target=new URL(payload.url);
                     if(target.hostname==='blog.wufeng.de'){
-                        target.hostname=legacyHost;
-                        payload.url=target.href;
+                        payload.url=counterUrl;
                         init=Object.assign({},init,{body:JSON.stringify(payload)});
+                        isCounterRequest=true;
                     }
                 }
             }
         }catch(error){}
-        return originalFetch.call(this,input,init);
+        var responsePromise=originalFetch.call(this,input,init);
+        if(!isCounterRequest||!responsePromise||typeof responsePromise.then!=="function")return responsePromise;
+        return responsePromise.then(function(response){
+            try{
+                return response.clone().json().then(function(body){
+                    if(body&&body.data&&typeof body.data.page_pv==="number")body.data.site_pv=body.data.page_pv;
+                    else if(body&&typeof body.page_pv==="number")body.site_pv=body.page_pv;
+                    return new Response(JSON.stringify(body),{status:response.status,statusText:response.statusText,headers:response.headers});
+                }).catch(function(){return response;});
+            }catch(error){return response;}
+        });
     };
 })();
 </script>"""
