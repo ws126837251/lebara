@@ -301,4 +301,5 @@ for(var i=0;i<iconPost.length;i++){
 
 
 </script>
+<script>(function(){function addHomeLink(){if(document.querySelector('.tutorialHomeLink'))return;const target=document.querySelector('#header .title-right');if(!target)return;const link=document.createElement('a');link.className='btn btn-invisible circle tutorialHomeLink';link.href='https://blog.wufeng.de/';link.title='返回无风·Blog 首页';link.setAttribute('aria-label','返回无风·Blog 首页');link.innerHTML='<svg class="octicon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="m8 1.2 6.3 5.4v7.2H9.8V9.5H6.2v4.3H1.7V6.6L8 1.2Zm0 2-4.8 4.1v5h1.5V8h4.6v4.3h1.5v-5L8 3.2Z"></path></svg>';target.prepend(link)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',addHomeLink,{once:true})}else{addHomeLink()}})();</script>
 </html>
