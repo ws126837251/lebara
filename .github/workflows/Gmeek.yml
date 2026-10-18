@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - "config.json"
       - ".github/workflows/Gmeek.yml"
       - "article-order.json"
       - "scripts/customize_homepage.py"
