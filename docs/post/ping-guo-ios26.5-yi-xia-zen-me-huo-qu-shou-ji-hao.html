@@ -1,35 +1,59 @@
 <!DOCTYPE html>
+
 <html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
-    <script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script><style>@media (prefers-color-scheme:light){html[data-color-mode='auto'],html[data-color-mode='auto'] body{background-color:#EEF3F7!important}}html[data-color-mode='light'],html[data-color-mode='light'] body{background-color:#EEF3F7!important}.Header{display:flex!important;align-items:center!important}.Header h1{transform:translateY(-8px)!important}.Header img{margin-top:0!important}#weatherEffect{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999}</style><canvas id='weatherEffect'></canvas><script>(function(){const c=document.getElementById('weatherEffect');if(!c)return;if(window.matchMedia('(max-width:600px), (prefers-reduced-motion:reduce)').matches){c.remove();return}const ctx=c.getContext('2d');let w,h;let p=[];const m=new Date().getMonth()+1;const winter=m===12||m<=2;const summer=m>=6&&m<=8;function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}resize();window.addEventListener('resize',resize);let mobile=window.innerWidth<600;let count=mobile?50:120;for(let i=0;i<count;i++){p.push({x:Math.random()*w,y:Math.random()*h,l:Math.random()*18+10,s:Math.random()*1.2+.5,r:Math.random()*2.5+1})}function draw(){ctx.clearRect(0,0,w,h);if(winter){ctx.fillStyle='rgba(255,255,255,.85)';ctx.beginPath();p.forEach(a=>{ctx.moveTo(a.x,a.y);ctx.arc(a.x,a.y,a.r,0,Math.PI*2);a.y+=a.s;a.x+=Math.sin(a.y/70)*.35;if(a.y>h){a.y=-10;a.x=Math.random()*w}});ctx.fill()}else{ctx.strokeStyle=summer?'rgba(120,170,210,.50)':'rgba(120,150,180,.50)';ctx.lineWidth=1.4;p.forEach(a=>{ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x+2,a.y+a.l);ctx.stroke();a.y+=a.s*(mobile?(summer?7:5):(summer?4:2.5));a.x+=.25;if(a.y>h){a.y=-20;a.x=Math.random()*w}})}requestAnimationFrame(draw)}draw()})();</script><style>html,body{max-width:100%}#header,#content,.title-left,.d-flex{min-width:0}.title-right{flex-shrink:0}.SideNav{min-width:0!important;width:100%!important}.SideNav-item{min-width:0}.SideNav-item>.d-flex{flex:1 1 auto;min-width:0}.listLabels{flex:0 0 auto}.LabelName{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:72px;min-width:72px;max-width:72px;text-align:center;white-space:nowrap}.listLabels object{display:flex!important;align-items:center;justify-content:center;width:100%;max-width:none!important}.LabelName a{display:block;width:100%;text-align:center}#postBody{line-height:1.75!important;overflow-wrap:anywhere}#postBody p{margin:0 0 1em}#postBody img{max-width:100%;height:auto}#postBody table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}#postBody pre{max-width:100%;overflow-x:auto}#postBody a{overflow-wrap:anywhere}@media (max-width:600px){body{width:100%!important;max-width:100%!important;margin:0 auto!important;padding:12px!important;line-height:1.6!important}#header{align-items:center!important;gap:8px;margin-bottom:14px!important}.title-left{display:flex;align-items:center;flex:1 1 auto;overflow:hidden}.avatar{width:38px!important;height:38px!important;flex:0 0 38px}.blogTitle{display:block!important;min-width:0;max-width:none!important;margin-left:8px!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:18px!important;line-height:1.2!important}.title-right{gap:2px}.title-right .circle,.title-right button{box-sizing:border-box!important;display:flex!important;align-items:center;justify-content:center;width:42px!important;height:42px!important;min-width:42px!important;margin-right:0!important;padding:0!important}#buttonRSS{display:none!important}.postTitle{flex:1 1 auto;min-width:0;margin:0!important;overflow-wrap:anywhere;font-size:26px!important;line-height:1.25!important}.SideNav-item{gap:8px;padding:12px 10px!important}.SideNav-icon{flex:0 0 16px;margin-right:8px!important}.listTitle{font-size:15px;line-height:1.4}.listLabels{margin-left:6px}.LabelName{width:72px;min-width:72px;max-width:72px;overflow:hidden}#postBody{font-size:16px!important;line-height:1.75!important}#postBody h2{margin-top:1.6em;font-size:22px}#postBody h3{margin-top:1.4em;font-size:18px}#postBody table{font-size:14px}#cmButton{min-height:48px}#footer{margin-top:40px!important;padding-bottom:12px}#weatherEffect{display:none!important}}@media (prefers-reduced-motion:reduce){#weatherEffect{display:none!important}.avatar{transition:none!important}.avatar:hover{transform:none!important}}</style>
-    <link rel="icon" href="https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp"><script>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css" rel="stylesheet"/>
+<script src="https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js"></script><script data-wufeng-vcount-canonical="">
+(function(){
+    if(window.__wufengVercountCanonical)return;
+    window.__wufengVercountCanonical=true;
+    var api="https://events.vercount.one/api/v2/log";
+    var legacyHost="tutorials.wufeng.de";
+    var originalFetch=window.fetch;
+    if(typeof originalFetch!=="function")return;
+    window.fetch=function(input,init){
+        try{
+            var requestUrl=typeof input==='string'?input:(input&&input.url);
+            if(requestUrl===api&&init&&typeof init.body==='string'){
+                var payload=JSON.parse(init.body);
+                if(payload&&typeof payload.url==='string'){
+                    var target=new URL(payload.url);
+                    if(target.hostname==='blog.wufeng.de'){
+                        target.hostname=legacyHost;
+                        payload.url=target.href;
+                        init=Object.assign({},init,{body:JSON.stringify(payload)});
+                    }
+                }
+            }
+        }catch(error){}
+        return originalFetch.call(this,input,init);
+    };
+})();
+</script><style>@media (prefers-color-scheme:light){html[data-color-mode='auto'],html[data-color-mode='auto'] body{background-color:#EEF3F7!important}}html[data-color-mode='light'],html[data-color-mode='light'] body{background-color:#EEF3F7!important}.Header{display:flex!important;align-items:center!important}.Header h1{transform:translateY(-8px)!important}.Header img{margin-top:0!important}#weatherEffect{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999}</style><canvas id="weatherEffect"></canvas><script>(function(){const c=document.getElementById('weatherEffect');if(!c)return;if(window.matchMedia('(max-width:600px), (prefers-reduced-motion:reduce)').matches){c.remove();return}const ctx=c.getContext('2d');let w,h;let p=[];const m=new Date().getMonth()+1;const winter=m===12||m<=2;const summer=m>=6&&m<=8;function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}resize();window.addEventListener('resize',resize);let mobile=window.innerWidth<600;let count=mobile?50:120;for(let i=0;i<count;i++){p.push({x:Math.random()*w,y:Math.random()*h,l:Math.random()*18+10,s:Math.random()*1.2+.5,r:Math.random()*2.5+1})}function draw(){ctx.clearRect(0,0,w,h);if(winter){ctx.fillStyle='rgba(255,255,255,.85)';ctx.beginPath();p.forEach(a=>{ctx.moveTo(a.x,a.y);ctx.arc(a.x,a.y,a.r,0,Math.PI*2);a.y+=a.s;a.x+=Math.sin(a.y/70)*.35;if(a.y>h){a.y=-10;a.x=Math.random()*w}});ctx.fill()}else{ctx.strokeStyle=summer?'rgba(120,170,210,.50)':'rgba(120,150,180,.50)';ctx.lineWidth=1.4;p.forEach(a=>{ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x+2,a.y+a.l);ctx.stroke();a.y+=a.s*(mobile?(summer?7:5):(summer?4:2.5));a.x+=.25;if(a.y>h){a.y=-20;a.x=Math.random()*w}})}requestAnimationFrame(draw)}draw()})();</script><style>html,body{max-width:100%}#header,#content,.title-left,.d-flex{min-width:0}.title-right{flex-shrink:0}.SideNav{min-width:0!important;width:100%!important}.SideNav-item{min-width:0}.SideNav-item>.d-flex{flex:1 1 auto;min-width:0}.listLabels{flex:0 0 auto}.LabelName{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:72px;min-width:72px;max-width:72px;text-align:center;white-space:nowrap}.listLabels object{display:flex!important;align-items:center;justify-content:center;width:100%;max-width:none!important}.LabelName a{display:block;width:100%;text-align:center}#postBody{line-height:1.75!important;overflow-wrap:anywhere}#postBody p{margin:0 0 1em}#postBody img{max-width:100%;height:auto}#postBody table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}#postBody pre{max-width:100%;overflow-x:auto}#postBody a{overflow-wrap:anywhere}@media (max-width:600px){body{width:100%!important;max-width:100%!important;margin:0 auto!important;padding:12px!important;line-height:1.6!important}#header{align-items:center!important;gap:8px;margin-bottom:14px!important}.title-left{display:flex;align-items:center;flex:1 1 auto;overflow:hidden}.avatar{width:38px!important;height:38px!important;flex:0 0 38px}.blogTitle{display:block!important;min-width:0;max-width:none!important;margin-left:8px!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:18px!important;line-height:1.2!important}.title-right{gap:2px}.title-right .circle,.title-right button{box-sizing:border-box!important;display:flex!important;align-items:center;justify-content:center;width:42px!important;height:42px!important;min-width:42px!important;margin-right:0!important;padding:0!important}#buttonRSS{display:none!important}.postTitle{flex:1 1 auto;min-width:0;margin:0!important;overflow-wrap:anywhere;font-size:26px!important;line-height:1.25!important}.SideNav-item{gap:8px;padding:12px 10px!important}.SideNav-icon{flex:0 0 16px;margin-right:8px!important}.listTitle{font-size:15px;line-height:1.4}.listLabels{margin-left:6px}.LabelName{width:72px;min-width:72px;max-width:72px;overflow:hidden}#postBody{font-size:16px!important;line-height:1.75!important}#postBody h2{margin-top:1.6em;font-size:22px}#postBody h3{margin-top:1.4em;font-size:18px}#postBody table{font-size:14px}#cmButton{min-height:48px}#footer{margin-top:40px!important;padding-bottom:12px}#weatherEffect{display:none!important}}@media (prefers-reduced-motion:reduce){#weatherEffect{display:none!important}.avatar{transition:none!important}.avatar:hover{transform:none!important}}</style>
+<link href="https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp" rel="icon"/><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 输入之后显示空白
+<meta content="# 输入之后显示空白
 
 1. 小火箭开代理；
 2. 英国原生节点（测试其他节点不行）；
 3. 重启手机；
-4. *#100# 可直接获取。">
-<meta property="og:title" content="苹果ios26.5以下怎么获取手机号">
-<meta property="og:description" content="# 输入之后显示空白
+4. *#100# 可直接获取。" name="description"/>
+<meta content="苹果ios26.5以下怎么获取手机号" property="og:title"/>
+<meta content="# 输入之后显示空白
 
 1. 小火箭开代理；
 2. 英国原生节点（测试其他节点不行）；
 3. 重启手机；
-4. *#100# 可直接获取。">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://blog.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html">
-<meta property="og:image" content="https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp">
+4. *#100# 可直接获取。" property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://blog.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html" property="og:url"/>
+<meta content="https://cdn.nodeimage.com/i/j3CEACe0uyNKI9YjgDBInZsllW5VDviU.webp" property="og:image"/>
 <title>苹果ios26.5以下怎么获取手机号</title>
-
-
-
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
@@ -37,7 +61,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 #footer {margin-top:64px; text-align: center;font-size: small;}
 
 </style>
-
 <style>
 .postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
@@ -53,36 +76,28 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 </style>
-
-
-
-
 <body>
-    <div id="header">
+<div id="header">
 <h1 class="postTitle">苹果ios26.5以下怎么获取手机号</h1>
 <div class="title-right">
-    <a href="https://blog.wufeng.de/lebara" id="buttonHome" class="btn btn-invisible circle" title="首页">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathHome" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-    <a href="https://github.com/ws126837251/lebara/issues/16" target="_blank" class="btn btn-invisible circle" title="Issue">
-        <svg class="octicon" width="16" height="16">
-            <path id="pathIssue" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-
-    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
-        <svg class="octicon" width="16" height="16" >
-            <path id="themeSwitch" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-
+<a class="btn btn-invisible circle" href="https://blog.wufeng.de/lebara" id="buttonHome" title="首页">
+<svg class="octicon" height="16" width="16">
+<path fill-rule="evenodd" id="pathHome"></path>
+</svg>
+</a>
+<a class="btn btn-invisible circle" href="https://github.com/ws126837251/lebara/issues/16" target="_blank" title="Issue">
+<svg class="octicon" height="16" width="16">
+<path fill-rule="evenodd" id="pathIssue"></path>
+</svg>
+</a>
+<a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+<svg class="octicon" height="16" width="16">
+<path fill-rule="evenodd" id="themeSwitch"></path>
+</svg>
+</a>
 </div>
 </div>
-    <div id="content">
+<div id="content">
 <div class="markdown-body" id="postBody"><h1>输入之后显示空白</h1>
 <ol>
 <li>小火箭开代理；</li>
@@ -101,16 +116,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>重启手机</li>
 </ul></div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 有任何问题请联系QQ或TG客服，谢谢！❤️</div>
-
-<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<button class="btn btn-block" id="cmButton" onclick="openComments()" type="button">评论</button>
 <div class="comments" id="comments"></div>
-
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blog.wufeng.de/lebara">Lebara 使用指南</a></div>
+<div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://blog.wufeng.de/lebara">Lebara 使用指南</a></div>
 <div id="footer2">
-    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+<span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
-
 <script>
 var now=new Date();
 document.getElementById("copyrightYear").innerHTML=now.getFullYear();
@@ -154,7 +166,6 @@ function utterancesTheme(theme){
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
-
 <script>
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
@@ -201,6 +212,5 @@ function iFrameLoading(){
 
 
 </script>
-<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script>(function(){function addHubLink(){if(document.querySelector('.tutorialHubLink'))return;const header=document.querySelector('#header');if(!header)return;const target=header.querySelector('.title-right')||header;const link=document.createElement('a');link.className='tutorialHubLink';link.href='https://blog.wufeng.de/';link.textContent='教程中心';link.setAttribute('aria-label','返回无风教程中心');link.style.cssText='display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;margin-right:8px;border:1px solid var(--borderColor-default,#d0d7de);border-radius:999px;color:inherit;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap';target.prepend(link)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',addHubLink)}else{addHubLink()}})();</script>
-
+<script src="https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js"></script><script>(function(){function addHubLink(){if(document.querySelector('.tutorialHubLink'))return;const header=document.querySelector('#header');if(!header)return;const target=header.querySelector('.title-right')||header;const link=document.createElement('a');link.className='tutorialHubLink';link.href='https://blog.wufeng.de/';link.textContent='教程中心';link.setAttribute('aria-label','返回无风教程中心');link.style.cssText='display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;margin-right:8px;border:1px solid var(--borderColor-default,#d0d7de);border-radius:999px;color:inherit;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap';target.prepend(link)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',addHubLink)}else{addHubLink()}})();</script>
 </html>
