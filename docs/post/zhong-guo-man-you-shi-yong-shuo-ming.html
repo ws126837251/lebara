@@ -12,6 +12,13 @@
     window.__wufengVercountCanonical=true;
     var api="https://events.vercount.one/api/v2/log";
     var counterUrl="https://blog.wufeng.de/lebara/";
+    var historicalBase=6732;
+    var scopedCacheKey="wufengVercountData:lebara";
+    try{
+        var savedCounterData=window.localStorage.getItem(scopedCacheKey);
+        if(savedCounterData)window.localStorage.setItem("visitorCountData",savedCounterData);
+        else window.localStorage.removeItem("visitorCountData");
+    }catch(error){}
     var originalFetch=window.fetch;
     if(typeof originalFetch!=="function")return;
     window.fetch=function(input,init){
@@ -35,8 +42,15 @@
         return responsePromise.then(function(response){
             try{
                 return response.clone().json().then(function(body){
-                    if(body&&body.data&&typeof body.data.page_pv==="number")body.data.site_pv=body.data.page_pv;
-                    else if(body&&typeof body.page_pv==="number")body.site_pv=body.page_pv;
+                    var normalized=false;
+                    if(body&&body.data&&typeof body.data.page_pv==="number"){
+                        body.data.site_pv=historicalBase+body.data.page_pv;
+                        normalized=true;
+                    }else if(body&&typeof body.page_pv==="number"){
+                        body.site_pv=historicalBase+body.page_pv;
+                        normalized=true;
+                    }
+                    if(normalized)try{window.localStorage.setItem(scopedCacheKey,JSON.stringify(body));}catch(error){}
                     return new Response(JSON.stringify(body),{status:response.status,statusText:response.statusText,headers:response.headers});
                 }).catch(function(){return response;});
             }catch(error){return response;}
