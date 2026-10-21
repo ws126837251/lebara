@@ -19,8 +19,8 @@
 > *#1345#
 
 报错/无法查询：
-[安卓教程](https://tutorials.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
-[苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html)
+[安卓教程](https://blog.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
+[苹果教程](https://blog.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html)
 
 ## 二、登录官网
 1. 官网注册账号：[点击进入](https://www.lebara.co.uk/en/home.html)；
@@ -36,8 +36,8 @@
 
 1. 切换接入点（APN）,**重启手机**；
 
-- [安卓教程](https://tutorials.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
-- [苹果教程](https://tutorials.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html)
+- [安卓教程](https://blog.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
+- [苹果教程](https://blog.wufeng.de/lebara/post/ping-guo-ios26-yi-shang-zen-me-huo-qu-shou-ji-hao.html)
 
 2. 关闭wifi和vpn，只开启数据漫游；
 
@@ -58,5 +58,5 @@
 2. 拉取WiFiCall，拨打5588激活；
 3. 拨打三次，飞行模式下打通、关飞行模式打通、关WiFi打通就能成功激活；
 
-- 苹果手机拉取WIFICall：[点击跳转](https://tutorials.wufeng.de/lebara/post/ping-guo-shou-ji-ru-he-la-qu-WIFICall.html)
-- 携号转网：[点击进入](https://tutorials.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html)
+- 苹果手机拉取WIFICall：[点击跳转](https://blog.wufeng.de/lebara/post/ping-guo-shou-ji-ru-he-la-qu-WIFICall.html)
+- 携号转网：[点击进入](https://blog.wufeng.de/lebara/post/xi-hao-zhuan-ru-Lebara.html)
