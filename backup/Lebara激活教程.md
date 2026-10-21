@@ -19,11 +19,11 @@
 > *#1345#
 
 报错/无法查询：
-- [安卓教程](https://blog.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
-- [苹果教程](https://blog.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html)
+[安卓教程](https://blog.wufeng.de/lebara/post/Lebara-ru-he-geng-gai-apn.html)
+[苹果教程](https://blog.wufeng.de/lebara/post/ping-guo-ios26.5-yi-xia-zen-me-huo-qu-shou-ji-hao.html)
 
 ## 二、登录官网
-1. 官网注册账号：[点击进入](https://www.lebara.co.uk/)；
+1. 官网注册账号：[点击进入](https://www.lebara.co.uk/en/home.html)；
 2. 绑定查询到的07开头的手机号码；
 3. 输入验证码；
 
